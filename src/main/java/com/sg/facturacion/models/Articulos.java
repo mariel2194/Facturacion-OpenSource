@@ -32,7 +32,17 @@ public class Articulos {
     @Column(name = "Descripcion", nullable=false)
     private String descripcion;
     
-    @Column(name = "Precio_Unitario")
+    private int cantidad;
+    
+    public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	@Column(name = "Precio_Unitario")
     private double precio_unitario;  
     
     @Column(name = "Activo")    

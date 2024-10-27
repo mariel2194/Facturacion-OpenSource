@@ -2,6 +2,7 @@ package com.sg.facturacion.models;
 
 import java.util.Calendar;
 import java.util.Date;
+import jakarta.persistence.TemporalType;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -14,7 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,6 +47,7 @@ public class AsientoContable {
     
 
 	@Column(name = "Fecha")
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
 
@@ -53,16 +55,13 @@ public class AsientoContable {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;

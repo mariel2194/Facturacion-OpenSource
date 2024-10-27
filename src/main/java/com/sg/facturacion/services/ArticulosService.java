@@ -37,6 +37,7 @@ public class ArticulosService {
             existingArticulo.setDescripcion(articulo.getDescripcion());
             existingArticulo.setPrecio_unitario(articulo.getPrecio_unitario());
             existingArticulo.setActivo(articulo.getActivo());
+            existingArticulo.setCantidad(articulo.getCantidad());
             existingArticulo.setCategoria(articulo.getCategoria()); 
             articulosRepository.save(existingArticulo);
         }

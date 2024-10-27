@@ -250,12 +250,12 @@
 						<tbody>
 							<tr th:each="factura:${facturaciones}">
 								<td th:text="${factura.fecha}">Fecha</td>
-								<td th:text="${factura.articulo.descripcion}">Descripcion</td>
-								<td th:text="${factura.cantidad}">Fecha</td>
-								<td th:text="${factura.vendedor.nombre}">Descripcion</td>
-								<td th:text="${factura.cliente.nombre}">Descripcion</td>
-								<td th:text="${factura.montoTotal}">Descripcion</td>
-								<td th:text="${factura.comentario}">Descripcion</td>
+								<td th:text="${factura.articulo.descripcion}">Articulo</td>
+								<td th:text="${factura.cantidad}">Cantidad</td>
+								<td th:text="${factura.vendedor.nombre}">Vendedor</td>
+								<td th:text="${factura.cliente.nombre}">Cliente</td>
+								<td th:text="${factura.montoTotal}">Monto</td>
+								<td th:text="${factura.comentario}">Comentario</td>
 
 								<td>
 									<button type="button" class="btn btn-info editButton" th:data-id="${factura.id}"
