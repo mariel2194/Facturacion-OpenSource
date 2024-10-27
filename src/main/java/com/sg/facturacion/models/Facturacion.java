@@ -2,10 +2,9 @@ package com.sg.facturacion.models;
 
 import java.util.Calendar;
 import java.util.Date;
-
+import jakarta.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,6 +43,7 @@ public class Facturacion {
 	private Vendedores vendedor;
 
 	@Column(name = "Fecha")
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
 	
@@ -123,12 +124,7 @@ public class Facturacion {
 		this.cantidad = cantidad;
 	}
 
-
-	public Devoluciones getDevolucion() {
-		return devolucion;
-	}
-
-
+	
 	public String getComentario() {
 		return comentario;
 	}

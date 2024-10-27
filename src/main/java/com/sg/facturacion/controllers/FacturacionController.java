@@ -16,23 +16,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sg.facturacion.models.Articulos;
+import com.sg.facturacion.models.Clientes;
 import com.sg.facturacion.models.Facturacion;
+import com.sg.facturacion.models.Vendedores;
+import com.sg.facturacion.services.ArticulosService;
+import com.sg.facturacion.services.ClienteService;
+import com.sg.facturacion.services.VendedoresService;
+
 import com.sg.facturacion.services.FacturacionService;
 
 import org.slf4j.Logger;
-
 @Controller
 public class FacturacionController {
 
     @Autowired
     private FacturacionService facturacionService;
 
+    @Autowired
+    private ClienteService clienteService;
+
+    @Autowired
+    private VendedoresService vendedorService;
+
+    @Autowired
+    private ArticulosService articuloService;
+
     private static final Logger logger = LoggerFactory.getLogger(FacturacionController.class);
 
     @GetMapping("/facturacion")
     public String getFacturaciones(Model model) {
-        List<Facturacion> facturacionesList = facturacionService.listFacturaciones();
-        model.addAttribute("facturaciones", facturacionesList);
+        List<Facturacion> facturasList = facturacionService.listFacturaciones();
+        List<Clientes> clientesList = clienteService.listClientes();
+        List<Vendedores> vendedoresList = vendedorService.listVendedores();
+        List<Articulos> articulosList = articuloService.listArticulos();
+
+        model.addAttribute("facturaciones", facturasList);
+        model.addAttribute("clientes", clientesList);
+        model.addAttribute("vendedores", vendedoresList);
+        model.addAttribute("articulos", articulosList);
+
         return "facturacion";
     }
 
@@ -45,6 +68,12 @@ public class FacturacionController {
             logger.error("Error al guardar la facturación", e);
             model.addAttribute("errorMessage", "Error al guardar la facturación: " + e.getMessage());
             model.addAttribute("facturacion", facturacion);
+
+            // Reagregar listas en caso de error para mantenerlas en la vista
+            model.addAttribute("clientes", clienteService.listClientes());
+            model.addAttribute("vendedores", vendedorService.listVendedores());
+            model.addAttribute("articulos", articuloService.listArticulos());
+
             return "crearFacturacion";
         }
     }

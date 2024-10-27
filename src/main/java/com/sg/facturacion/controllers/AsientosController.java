@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/asientos")
-public class AsientoContableController {
+public class AsientosController {
 
     @Autowired
     private AsientoContableService asientoContableService; 
@@ -28,7 +28,7 @@ public class AsientoContableController {
     @Autowired
     private ClienteService clienteService; 
 
-    private static final Logger logger = LoggerFactory.getLogger(AsientoContableController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AsientosController.class);
 
     // Obtener todos los asientos contables
     @GetMapping

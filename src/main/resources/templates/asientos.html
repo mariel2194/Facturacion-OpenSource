@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-	<title>Gestión de Préstamos</title>
+	<title>Gestión de Asientos Contables</title>
 
 	<!-- Incluye jQuery -->
 	<meta content="" name="description">
@@ -240,7 +240,7 @@
 
 			<div>
 				<div class="pagetitle">
-					<h1>Préstamos</h1>
+					<h1>Asientos Contables</h1>
 
 					<nav>
 						<ol class="breadcrumb">
@@ -256,44 +256,24 @@
 					<thead>
 						<tr>
 							<th>Fecha</th>
-							<th>Usuario</th>
-							<th>Libro</th>
-							<th>Dias Solicitados</th>
-							<th>Monto Por Dia</th>
-							<th>Fecha Devolucion Estimada</th>
-							<th>Empleado</th>
-							<th></th>
+							<th>Cuenta</th>
+							<th>Descripcion</th>
+							<th>Tipo de Movimiento</th>
+							<th>Cliente</th>						
+							<th>Acciones</th>
 
 
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="prestamo:${prestamos}">
-							<td th:text="${prestamo.fechaPrestamo}">Fecha</td>
-							<td th:text="${prestamo.usuario.nombre}">Usuario</td>
-							<td th:text="${prestamo.libro.descripcion}">Libro</td>
-							<td th:text="${prestamo.diasSolicitados}">Dias Solicitados</td>
-							<td th:text="${prestamo.montoPorDia}">Monto Por Dia</td>
-							<td th:text="${prestamo.fechaDevolucionEstimada}">Fecha Devolucion Estimada</td>
-							<td th:text="${prestamo.empleado.nombre}">Empleado</td>
-
-
+						<tr th:each="asiento:${asientos}">
+							<td th:text="${asiento.fecha}">Fecha</td>
+							<td th:text="${asiento.cuenta}">Usuario</td>
+							<td th:text="${asiento.descripcion}">Libro</td>
+							<td th:text="${asiento.tipoMovimiento}">Dias Solicitados</td>
+							<td th:text="${asiento.cliente.nombre}">Monto Por Dia</td>
 							<td>
-								<form method="post" class="d-inline-flex gap-2">
-
-								<button type="button" class="btn btn-primary"
-									th:if="${!devolucionesExistentes[prestamo.id]}" data-bs-toggle="modal"
-									data-bs-target="#devolucionModal" th:data-prestamo-id="${prestamo.id}"
-								    ><i class="bi bi-box-arrow-left" data-bs-toggle="tooltip" title="Realizar Devolución"></i></button>
-								<button type="button" class="btn btn-info editButton" data-bs-toggle="modal"
-									data-bs-target="#editPrestamosModal">
-									<i class="bi bi-pencil-square" data-bs-toggle="tooltip" title="Editar Préstamo"></i>
-								</button>
 								
-									<button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" title="Eliminar Préstamo">
-										<i class="bi bi-trash"></i>
-									</button>
-									</form>
 							</td>
 						</tr>
 					</tbody>

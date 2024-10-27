@@ -40,7 +40,6 @@ public class FacturacionService {
             existingFacturacion.setCantidad(facturacion.getCantidad());
             existingFacturacion.setComentario(facturacion.getComentario());
             existingFacturacion.setMontoTotal(facturacion.getMontoTotal());
-            existingFacturacion.setDevolucion(facturacion.getDevolucion());
             facturacionRepository.save(existingFacturacion);
         }
     }

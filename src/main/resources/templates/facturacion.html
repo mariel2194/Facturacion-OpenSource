@@ -214,57 +214,66 @@
 
 	</aside><!-- End Sidebar-->
 	<main id="main" class="main">
-
 		<div class="card" style="padding: 1.5em;">
 
-			<div class="card-body">
-				<div class="pagetitle">
-					<h1>Artículos</h1>
-					<nav>
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="/index">Volver al Inicio</a></li>
-							<button style="margin-left: 70em; display: inline-block; position: absolute; top: 20px;"
-								type="button" class="btn btn-info" data-bs-toggle="modal"
-								data-bs-target="#crearArticuloModal">
-								Agregar Artículo
-							</button>
-						</ol>
-					</nav>
-				</div><!-- End Page Title -->
+				<div>
+					<div class="pagetitle">
+						<h1>Facturas</h1>
 
-				<table class="table table-hover datatable">
-					<thead>
-						<tr>
-							<th>Descripcion</th>
-							<th>Precio Unitario</th>
-
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="factura:${facturacion}">
-							<td th:text="${factura.articulo.descripcion}">Descripcion</td>
-							<td th:text="${factura.cliente.nombre}">Descripcion</td>
-
-							<td> <button type="button" class="btn btn-info editButton" th:data-id="${articulo.id}"
-									data-bs-toggle="modal" data-bs-target="#editArticulosModal">
-									<i class="bi bi-pencil-square"></i>
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Volver al Inicio</a></li>
+								<button style="margin-left: 60em; display: inline-block; position: absolute; top: 20px;"
+									type="button" class="btn btn-info" data-bs-toggle="modal"
+									data-bs-target="#crearAutoresModal">
+									Agregar Factura
 								</button>
-								<form th:action="@{/articulos/delete/{id}(id=${articulo.id})}" method="post"
-									style="display:inline;">
-									<button type="submit" class="btn btn-danger">
-										<i class="bi bi-trash"></i>
+
+							</ol>
+
+						</nav>
+					</div><!-- End Page Title -->
+					<table class="table table-hover datatable">
+						<thead>
+							<tr>
+								<th>Fecha</th>
+								<th>Articulo</th>
+								<th>Cantidad</th>
+								<th>Vendedor</th>
+								<th>Cliente</th>
+								<th>Monto</th>
+								<th>Comentario</th>
+								<th>Acciones</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="factura:${facturaciones}">
+								<td th:text="${factura.fecha}">Fecha</td>
+								<td th:text="${factura.articulo.descripcion}">Descripcion</td>
+								<td th:text="${factura.cantidad}">Fecha</td>
+								<td th:text="${factura.vendedor.nombre}">Descripcion</td>
+								<td th:text="${factura.cliente.nombre}">Descripcion</td>
+								<td th:text="${factura.montoTotal}">Descripcion</td>
+								<td th:text="${factura.comentario}">Descripcion</td>
+
+								<td>
+									<button type="button" class="btn btn-info editButton" th:data-id="${factura.id}"
+										data-bs-toggle="modal" data-bs-target="#editFacturassModal">
+										<i class="bi bi-pencil-square"></i>
 									</button>
-								</form>
-							</td>
-
-						</tr>
-					</tbody>
-				</table>
+									<form th:action="@{/categorias/delete/{id}(id=${factura.id})}" method="post"
+										style="display:inline;">
+										<button type="submit" class="btn btn-danger">
+											<i class="bi bi-trash"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-
-
 	</main><!-- End #main -->
 
 	<!-- Modal para Editar Ciencias -->
