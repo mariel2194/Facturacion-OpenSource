@@ -55,15 +55,12 @@
 
 <body>
 
-	<div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
-
-
 	<!-- ======= Header ======= -->
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="index" class="logo d-flex align-items-center">
-				<img src="assets/img/logo.png" alt="">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
 				<span class="d-none d-lg-block">Cuesta Ferrecentro</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
@@ -84,12 +81,8 @@
 						<i class="bi bi-search"></i>
 					</a>
 				</li><!-- End Search Icon-->
-
 				<li class="nav-item dropdown">
-
-
 				</li><!-- End Messages Nav -->
-
 				<li class="nav-item dropdown pe-3">
 
 					<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -153,9 +146,7 @@
 
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
-
 		<ul class="sidebar-nav" id="sidebar-nav">
-
 			<li class="nav-item">
 				<a class="nav-link " href="index">
 					<i class="bi bi-grid"></i>
@@ -166,11 +157,9 @@
 				<a class="nav-link collapsed" data-bs-target="#components-nav" href="/categorias">
 					<i class="bi bi-menu-button-wide"></i><span>Categoria</span>
 				</a>
-
-
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/articulos">
-					<i class="bi bi-journal-text"></i><span>Articulos</span>
+					<i class="bi bi-tools"></i><span>Articulos</span>
 				</a>
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/clientes">
@@ -179,23 +168,14 @@
 
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/facturacion">
-					<i class="bi bi-journal-text"></i><span>Facturacion</span>
+					<i class="bi bi-receipt"></i><span>Facturas</span>
 				</a>
 
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientosContables">
-					<i class="bi bi-gem"></i><span>Asientos Contables</span>
+					<i class="bi bi-bank"></i><span>Asientos Contables</span>
 				</a>
-
-
-			<li class="nav-heading">Usuarios</li>
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="/usuarios">
-					<i class="bi bi-person"></i>
-					<span>Clientes</span>
-				</a>
-
+			<li class="nav-heading">Administracion</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="/vendedores">
 					<i class="bi bi-question-circle"></i>
@@ -205,7 +185,6 @@
 		</ul>
 
 	</aside><!-- End Sidebar-->
-
 	<main id="main" class="main">
 
 		<div class="card" style="padding: 1.5em;">
@@ -215,7 +194,7 @@
 					<h1>Artículos</h1>
 					<nav>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="/index">Volver al Inicio</a></li>
+							<li class="breadcrumb-item"><a href="index">Volver al Inicio</a></li>
 							<button style="margin-left: 60em; display: inline-block; position: absolute; top: 20px;"
 								type="button" class="btn btn-info" data-bs-toggle="modal"
 								data-bs-target="#crearArticuloModal">
@@ -224,7 +203,6 @@
 						</ol>
 					</nav>
 				</div><!-- End Page Title -->
-
 				<table class="table table-hover datatable">
 					<thead>
 						<tr>
@@ -238,12 +216,12 @@
 					</thead>
 					<tbody>
 						<tr th:each="articulo:${articulos}">
-							<td th:text="${articulo.descripcion}">Descripcion</td>
-							<td th:text="${articulo.precio_unitario}">Descripcion</td>
-							<td th:text="${articulo.cantidad}">Descripcion</td>
+							<td th:text="${articulo.descripcion}"></td>
+							<td th:text="${articulo.precio_unitario}"></td>
+							<td th:text="${articulo.cantidad}"></td>
 							<td
 								th:text="${articulo.categoria != null ? articulo.categoria.descripcion : 'Sin categoría'}">
-								Categoria</td>
+							</td>
 							<td th:text="${articulo.activo ? 'Sí' : 'No'}">Activo</td>
 							<td> <button type="button" class="btn btn-info editButton" th:data-id="${articulo.id}"
 									data-bs-toggle="modal" data-bs-target="#editArticulosModal">
@@ -257,18 +235,14 @@
 									</button>
 								</form>
 							</td>
-
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-
-
 	</main><!-- End #main -->
 
 	<!-- Modal para Editar Articulos -->
-
 	<div class="modal fade" id="EditarArticuloModal" tabindex="-1" aria-labelledby="editArticulosLabel"
 		aria-hidden="true">
 		<div class="modal-dialog">
@@ -295,7 +269,6 @@
 							<input type="text" class="form-control" id="cantidad" name="cantidad"
 								th:value="${articulo?.cantidad}">
 						</div>
-
 						<div class="form-group">
 							<label for="idioma">Categoria:</label>
 							<select class="form-control" id="categoria" name="categoria.id">
@@ -317,7 +290,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Modal para Crear Articulos -->
 	<div class="modal fade" id="crearArticuloModal" tabindex="-1" aria-labelledby="crearArticulosLabel"
@@ -386,8 +358,6 @@
 		</div>
 	</div>
 
-
-
 	<!-- ======= Footer ======= -->
 	<footer id="footer" class="footer">
 
@@ -396,16 +366,11 @@
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
 			class="bi bi-arrow-up-short"></i></a>
 
-	<script src="assets/js/main.js"></script>
-
 	<script>
-
 		let articuloId;
 
 		function abrirModalEliminar(id) {
-			articuloId = id; // Guarda el ID del artículo
-
-			// Abre el modal usando Bootstrap
+			articuloId = id; 
 			const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 			deleteModal.show();
 		}
@@ -413,7 +378,6 @@
 		document.getElementById("confirmarEliminar").addEventListener("click", function () {
 			const cantidad = document.getElementById("cantidadEliminar").value;
 			if (cantidad > 0) {
-				// Crea un formulario de eliminación y envíalo
 				const form = document.createElement("form");
 				form.method = "POST";
 				form.action = `/articulos/delete/${articuloId}`;
@@ -423,7 +387,6 @@
 				inputCantidad.name = "cantidad";
 				inputCantidad.value = cantidad;
 				form.appendChild(inputCantidad);
-
 				document.body.appendChild(form);
 				form.submit();
 			} else {
@@ -431,20 +394,14 @@
 			}
 		});
 
-
-
-
 		document.addEventListener('DOMContentLoaded', function () {
-			var editAutoresModal = document.getElementById('editAutoresModal');
-			if (editAutoresModal) {
-				editAutoresModal.addEventListener('show.bs.modal', function (event) {
+			var editArticulosModal = document.getElementById('editArticulosModal');
+			if (editArticulosModal) {
+				editArticulosModal.addEventListener('show.bs.modal', function (event) {
 					var button = event.relatedTarget; // Button that triggered the modal
-					var autorId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
+					var articuloId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
 
-					// Set the autorId in the hidden input field
-					document.getElementById('autorId').value = autorId;
-
-					// Optional: Fetch additional details if needed
+					document.getElementById('articuloId').value = articuloId;
 				});
 			}
 		});
@@ -455,8 +412,7 @@
 					const cienciaId = this.getAttribute('data-id');
 					const row = this.closest('tr');
 					const descripcion = row.children[0].innerText;
-					const activo = row.children[2].innerText === 'Sí'; // Convertir el texto en booleano
-
+					const activo = row.children[2].innerText === 'Sí';
 
 					// Rellenar el formulario del modal
 					document.getElementById('cienciaId').value = cienciaId;
@@ -465,9 +421,6 @@
 				});
 			});
 		});
-
-
-
 	</script>
 
 </body>

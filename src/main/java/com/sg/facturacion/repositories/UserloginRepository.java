@@ -7,5 +7,6 @@ import com.sg.facturacion.models.UserLogin;
 @Repository
 
 public interface UserloginRepository extends JpaRepository<UserLogin, Integer> {
+	UserLogin findByUsername(String username);
 
 }
