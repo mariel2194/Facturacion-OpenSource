@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-	<title>Gestión de Asientos Contables</title>
+	<title>Gestión de Articulos</title>
 
 	<!-- Incluye jQuery -->
 	<meta content="" name="description">
@@ -59,7 +59,8 @@
 
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="index" class="logo d-flex align-items-center">
-				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png"
+					alt="Ícono" style="width: 24px; height: 24px;">
 				<span class="d-none d-lg-block">Cuesta Ferrecentro</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
@@ -186,178 +187,178 @@
 	</aside><!-- End Sidebar-->
 	<main id="main" class="main">
 
-			<div class="card" style="padding: 1.5em;">
+		<div class="card" style="padding: 1.5em;">
 
-				<div class="card-body">
-					<div class="pagetitle">
-						<h1>Artículos</h1>
-						<nav>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index">Volver al Inicio</a></li>
-								<button style="margin-left: 60em; display: inline-block; position: absolute; top: 20px;"
-									type="button" class="btn btn-warning" data-bs-toggle="modal"
-									data-bs-target="#crearArticuloModal">
-									Agregar Artículo
+			<div class="card-body">
+				<div class="pagetitle">
+					<h1>Artículos</h1>
+					<nav>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index">Volver al Inicio</a></li>
+							<button style="margin-left: 60em; display: inline-block; position: absolute; top: 20px;"
+								type="button" class="btn btn-warning" data-bs-toggle="modal"
+								data-bs-target="#crearArticuloModal">
+								Agregar Artículo
+							</button>
+						</ol>
+					</nav>
+				</div><!-- End Page Title -->
+				<table class="table table-hover datatable">
+					<thead>
+						<tr>
+							<th>Descripcion</th>
+							<th>Precio Unitario</th>
+							<th>Cantidad</th>
+							<th>Categoría</th>
+							<th>Activo</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="articulo:${articulos}">
+							<td th:text="${articulo.descripcion}"></td>
+							<td th:text="${articulo.precio_unitario}"></td>
+							<td th:text="${articulo.cantidad}"></td>
+							<td
+								th:text="${articulo.categoria != null ? articulo.categoria.descripcion : 'Sin categoría'}">
+							</td>
+							<td th:text="${articulo.activo ? 'Sí' : 'No'}">Activo</td>
+							<td> <button type="button" class="btn editButton" th:data-id="${articulo.id}"
+									data-bs-toggle="modal" data-bs-target="#editarArticulosModal">
+									<i class="bi bi-pencil-square"></i>
 								</button>
-							</ol>
-						</nav>
-					</div><!-- End Page Title -->
-					<table class="table table-hover datatable">
-						<thead>
-							<tr>
-								<th>Descripcion</th>
-								<th>Precio Unitario</th>
-								<th>Cantidad</th>
-								<th>Categoría</th>
-								<th>Activo</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="articulo:${articulos}">
-								<td th:text="${articulo.descripcion}"></td>
-								<td th:text="${articulo.precio_unitario}"></td>
-								<td th:text="${articulo.cantidad}"></td>
-								<td
-									th:text="${articulo.categoria != null ? articulo.categoria.descripcion : 'Sin categoría'}">
-								</td>
-								<td th:text="${articulo.activo ? 'Sí' : 'No'}">Activo</td>
-								<td> <button type="button" class="btn editButton" th:data-id="${articulo.id}"
-										data-bs-toggle="modal" data-bs-target="#editArticulosModal">
-										<i class="bi bi-pencil-square"></i>
+								<form id="deleteForm" th:action="@{/articulos/delete/{id}(id=${articulo.id})}"
+									method="post" style="display:inline;">
+									<button type="button" class="btn"
+										th:onclick="abrirModalEliminar([[${articulo.id}]])">
+										<i class="bi bi-trash"></i>
 									</button>
-									<form id="deleteForm" th:action="@{/articulos/delete/{id}(id=${articulo.id})}"
-										method="post" style="display:inline;">
-										<button type="button" class="btn"
-											th:onclick="abrirModalEliminar([[${articulo.id}]])">
-											<i class="bi bi-trash"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-		</main><!-- End #main -->
+		</div>
+	</main><!-- End #main -->
 
 
-		<!-- Modal para Editar Articulos -->
-			<div class="modal fade" id="editArticulosModal" tabindex="-1" aria-labelledby="editArticulosLabel"
-				aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="editArticulosLabel">Editar Articulo</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<form id="cienciasForm" th:action="@{/articulos/update}" method="post" th:object="${articulos}">
-								<input type="hidden" id="articuloId" name="id">
-								<div class="form-group">
-									<label for="nombre">Descripcion:</label>
-									<input type="text" class="form-control" id="descripcion" name="descripcion"
-										th:value="${articulo?.descripcion}">
-								</div>
-								<div class="form-group">
-									<label for="nombre">Precio Unitario:</label>
-									<input type="number" min="1" step="any" class="form-control" id="precio_unitario" name="precio_unitario"
-										th:value="${articulo?.precio_unitario}">
-								</div>
-								<div class="form-group">
-									<label for="nombre">Cantidad:</label>
-									<input type="number" class="form-control" id="cantidad" name="cantidad"
-										th:value="${articulo?.cantidad}">
-								</div>
-								<div class="form-group">
-									<label for="categoria">Categoria:</label>
-									<select class="form-control" id="categoria" name="categoria.id">
-										<option th:each="categoria : ${categorias}" th:value="${categoria.id}"
-											th:text="${categoria.descripcion}"></option>
-									</select>
-								</div>
-								<br>
-								<div class="form-group">
-									<label for="activo">Activo</label>
-									<input type="checkbox" class="form-check-input" id="activo" name="activo">
-								</div>
-								</br>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-									<button type="submit" class="btn btn-primary">Guardar cambios</button>
-								</div>
-							</form>
-						</div>
-					</div>
+	<!-- Modal para Editar Articulos -->
+	<div class="modal fade" id="editarArticulosModal" tabindex="-1" aria-labelledby="editArticulosLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editArticulosLabel">Editar Articulo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-			</div>
-
-			<!-- Modal para Crear Articulos -->
-			<div class="modal fade" id="crearArticuloModal" tabindex="-1" aria-labelledby="crearArticulosLabel"
-				aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="crearArticulosLabel">Crear Articulo</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-body">
+					<form id="cienciasForm" th:action="@{/articulos/update}" method="post" th:object="${articulos}">
+						<input type="hidden" id="articuloId" name="id">
+						<div class="form-group">
+							<label for="nombre">Descripcion:</label>
+							<input type="text" class="form-control" id="descripcion" name="descripcion"
+								th:value="${articulo?.descripcion}">
 						</div>
-						<div class="modal-body">
-							<form th:action="@{/articulos/addnew}" method="post" th:object="${articulo}">
-								<div class="form-group">
-									<label for="nombre">Descripcion:</label>
-									<input type="text" class="form-control" id="descripcion" name="descripcion"
-										th:value="${articulo?.descripcion}">
-								</div>
-								<div class="form-group">
-									<label for="nombre">Precio Unitario:</label>
-									<input type="text" class="form-control" id="descripcion" name="precio_unitario"
-										th:value="${articulo?.precio_unitario}">
-								</div>
-								<div class="form-group">
-									<label for="nombre">Cantidad:</label>
-									<input type="text" class="form-control" id="cantidad" name="cantidad"
-										th:value="${articulo?.cantidad}">
-								</div>
-
-								<div class="form-group">
-									<label for="idioma">Categoria:</label>
-									<select class="form-control" id="categoria" name="categoria.id">
-										<option th:each="categoria : ${categorias}" th:value="${categoria.id}"
-											th:text="${categoria.descripcion}"></option>
-									</select>
-								</div>
-								<br>
-								<div class="form-group" style="margin-top: 0.5px;">
-									<label for="activo">Activo</label>
-									<input type="checkbox" class="form-check-input" id="activo" name="activo">
-								</div>
-								<br>
-								<button type="submit" class="btn btn-primary">Guardar</button>
-							</form>
+						<div class="form-group">
+							<label for="nombre">Precio Unitario:</label>
+							<input type="number" min="1" step="any" class="form-control" id="precio_unitario"
+								name="precio_unitario" th:value="${articulo?.precio_unitario}">
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Modal para Disminuir Cantidad de Artículo -->
-			<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="BorrarArticulosLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="BorrarArticulosLabel">Disminuir Cantidad de Artículo</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<div class="form-group">
+							<label for="nombre">Cantidad:</label>
+							<input type="number" class="form-control" id="cantidad" name="cantidad"
+								th:value="${articulo?.cantidad}">
 						</div>
-						<div class="modal-body">
-							<p>Ingrese la cantidad que desea eliminar:</p>
-							<input type="number" id="cantidadEliminar" min="1" class="form-control">
+						<div class="form-group">
+							<label for="categoria">Categoria:</label>
+							<select class="form-control" id="categoria" name="categoria.id">
+								<option th:each="categoria : ${categorias}" th:value="${categoria.id}"
+									th:text="${categoria.descripcion}"></option>
+							</select>
 						</div>
+						<br>
+						<div class="form-group">
+							<label for="activo">Activo</label>
+							<input type="checkbox" class="form-check-input" id="activo" name="activo">
+						</div>
+						</br>
 						<div class="modal-footer">
-							<button id="confirmarEliminar" class="btn btn-danger">Confirmar</button>
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+							<button type="submit" class="btn btn-primary">Guardar cambios</button>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<!-- Modal para Crear Articulos -->
+	<div class="modal fade" id="crearArticuloModal" tabindex="-1" aria-labelledby="crearArticulosLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="crearArticulosLabel">Crear Articulo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/articulos/addnew}" method="post" th:object="${articulo}">
+						<div class="form-group">
+							<label for="nombre">Descripcion:</label>
+							<input type="text" class="form-control" id="descripcion" name="descripcion"
+								th:value="${articulo?.descripcion}">
+						</div>
+						<div class="form-group">
+							<label for="nombre">Precio Unitario:</label>
+							<input type="text" class="form-control" id="descripcion" name="precio_unitario"
+								th:value="${articulo?.precio_unitario}">
+						</div>
+						<div class="form-group">
+							<label for="nombre">Cantidad:</label>
+							<input type="text" class="form-control" id="cantidad" name="cantidad"
+								th:value="${articulo?.cantidad}">
+						</div>
+
+						<div class="form-group">
+							<label for="idioma">Categoria:</label>
+							<select class="form-control" id="categoria" name="categoria.id">
+								<option th:each="categoria : ${categorias}" th:value="${categoria.id}"
+									th:text="${categoria.descripcion}"></option>
+							</select>
+						</div>
+						<br>
+						<div class="form-group" style="margin-top: 0.5px;">
+							<label for="activo">Activo</label>
+							<input type="checkbox" class="form-check-input" id="activo" name="activo">
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary">Guardar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para Disminuir Cantidad de Artículo -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="BorrarArticulosLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="BorrarArticulosLabel">Disminuir Cantidad de Artículo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Ingrese la cantidad que desea eliminar:</p>
+					<input type="number" id="cantidadEliminar" min="1" class="form-control">
+				</div>
+				<div class="modal-footer">
+					<button id="confirmarEliminar" class="btn btn-danger">Confirmar</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- ======= Footer ======= -->
 	<footer id="footer" class="footer">
@@ -367,81 +368,83 @@
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
 			class="bi bi-arrow-up-short"></i></a>
 
-	
+
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
 
 	<script>
-			let articuloId;
+		let articuloId;
 
-			function abrirModalEliminar(id) {
-				articuloId = id; 
-				const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-				deleteModal.show();
+		function abrirModalEliminar(id) {
+			articuloId = id;
+			const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+			deleteModal.show();
+		}
+
+		document.getElementById("confirmarEliminar").addEventListener("click", function () {
+			const cantidad = document.getElementById("cantidadEliminar").value;
+			if (cantidad > 0) {
+				const form = document.createElement("form");
+				form.method = "POST";
+				form.action = `/articulos/delete/${articuloId}`;
+
+				const inputCantidad = document.createElement("input");
+				inputCantidad.type = "hidden";
+				inputCantidad.name = "cantidad";
+				inputCantidad.value = cantidad;
+				form.appendChild(inputCantidad);
+				document.body.appendChild(form);
+				form.submit();
+			} else {
+				alert("Por favor, ingrese una cantidad válida.");
 			}
+		});
 
-			document.getElementById("confirmarEliminar").addEventListener("click", function () {
-				const cantidad = document.getElementById("cantidadEliminar").value;
-				if (cantidad > 0) {
-					const form = document.createElement("form");
-					form.method = "POST";
-					form.action = `/articulos/delete/${articuloId}`;
+		document.addEventListener('DOMContentLoaded', function () {
+			var editAutoresModal = document.getElementById('editAutoresModal');
+			if (editAutoresModal) {
+				editAutoresModal.addEventListener('show.bs.modal', function (event) {
+					var button = event.relatedTarget; // Button that triggered the modal
+					var autorId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
 
-					const inputCantidad = document.createElement("input");
-					inputCantidad.type = "hidden";
-					inputCantidad.name = "cantidad";
-					inputCantidad.value = cantidad;
-					form.appendChild(inputCantidad);
-					document.body.appendChild(form);
-					form.submit();
-				} else {
-					alert("Por favor, ingrese una cantidad válida.");
-				}
+					// Set the autorId in the hidden input field
+					document.getElementById('autorId').value = autorId;
+
+					// Optional: Fetch additional details if needed
+				});
+			}
+		});
+
+		document.addEventListener('DOMContentLoaded', function () {
+			document.querySelectorAll('.editButton').forEach(button => {
+				button.addEventListener('click', function () {
+					const articuloId = this.getAttribute('data-id');
+					const row = this.closest('tr');
+					const descripcion = row.children[0].innerText;
+					const precioUnitario = row.children[1].innerText;
+					const cantidad = row.children[2].innerText;
+					const categoria = row.children[3].getAttribute('data-id');
+					const activo = row.children[4].innerText === 'Sí'; // Convertir el texto en booleano
+					document.getElementById('articuloId').value = articuloId;
+					document.getElementById('descripcion').value = descripcion;
+					document.getElementById('precio_unitario').value = precioUnitario;
+					document.getElementById('cantidad').value = cantidad;
+					document.getElementById('activo').checked = activo;
+					document.getElementById('categoria')
+					const categoriaSelect = document.getElementById('categoria');
+					const optionToSelect = Array.from(categoriaSelect.options).find(
+					                option => option.value === categoria
+					            );
+					            if (optionToSelect) {
+					                optionToSelect.selected = true;
+					            }	
+					
+				});
 			});
-
-			document.addEventListener('DOMContentLoaded', function () {
-							var editAutoresModal = document.getElementById('editAutoresModal');
-							if (editAutoresModal) {
-								editAutoresModal.addEventListener('show.bs.modal', function (event) {
-									var button = event.relatedTarget; // Button that triggered the modal
-									var autorId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
-
-									// Set the autorId in the hidden input field
-									document.getElementById('autorId').value = autorId;
-
-									// Optional: Fetch additional details if needed
-								});
-							}
-						});
-
-						document.addEventListener('DOMContentLoaded', function () {
-							// Manejar el clic en el botón de editar
-							document.querySelectorAll('.editButton').forEach(button => {
-								button.addEventListener('click', function () {
-									// Obtener el ID del autor
-									const autorId = this.getAttribute('data-id');
-
-									// Encontrar la fila correspondiente en la tabla
-									const row = this.closest('tr');
-									const nombre = row.children[0].innerText;
-									const paisOrigen = row.children[1].innerText;
-									const activo = row.children[2].innerText === 'Sí'; // Convertir el texto en booleano
-									const idioma = row.children[3].innerText;
-
-									// Rellenar el formulario del modal
-									document.getElementById('autorId').value = autorId;
-									document.getElementById('nombre').value = nombre;
-									document.getElementById('paisOrigen').value = paisOrigen;
-									document.getElementById('activo').checked = activo;
-
-									// Aquí se puede añadir lógica para seleccionar el idioma correcto si es necesario
-									// Si estás utilizando IDs de idiomas, puedes configurar esto de manera adecuada.
-								});
-							});
-						});
-
-
-		</script>
+			
+			
+		});
+	</script>
 
 </body>
 
