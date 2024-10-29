@@ -1,10 +1,4 @@
-/**
-* Template Name: NiceAdmin
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Updated: Apr 20 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 (function() {
   "use strict";
@@ -277,6 +271,8 @@
         form.classList.add('was-validated')
       }, false)
     })
+    
+    
 
   /**
    * Initiate Datatables
@@ -301,6 +297,40 @@
       ]
     });
   })*/
+  
+   // Función para inicializar DataTables
+  const initDataTables = () => {
+    const datatables = select('.datatable', true);
+    datatables.forEach(datatable => {
+      $(datatable).DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+          {
+            extend: 'excelHtml5',
+            text: 'Exportar a Excel',
+            title: 'Reporte'
+          },
+          {
+            extend: 'pdfHtml5',
+            text: 'Exportar a PDF',
+            title: 'Reporte',
+            orientation: 'landscape',
+            pageSize: 'A4'
+          },
+          'print'
+        ],
+        // Otras opciones que necesites
+      });
+    });
+  };
+
+  // Inicializar DataTables cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function () {
+    initDataTables();
+  });
+  
+  
+  
 
   /**
    * Autoresize echart charts

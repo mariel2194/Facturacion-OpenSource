@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-	<title>Gestion de Artículos</title>
+	<title>Facturacion</title>
 	<meta content="" name="description">
 	<meta content="" name="keywords">
 
@@ -48,15 +48,12 @@
 
 <body>
 
-	<div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
-
-
 	<!-- ======= Header ======= -->
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center">
-				<img src="assets/img/logo.png" alt="">
+			<a href="index" class="logo d-flex align-items-center">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
 				<span class="d-none d-lg-block">Cuesta Ferrecentro</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
@@ -77,12 +74,8 @@
 						<i class="bi bi-search"></i>
 					</a>
 				</li><!-- End Search Icon-->
-
 				<li class="nav-item dropdown">
-
-
 				</li><!-- End Messages Nav -->
-
 				<li class="nav-item dropdown pe-3">
 
 					<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -146,11 +139,9 @@
 
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
-
 		<ul class="sidebar-nav" id="sidebar-nav">
-
 			<li class="nav-item">
-				<a class="nav-link " href="/index">
+				<a class="nav-link " href="index">
 					<i class="bi bi-grid"></i>
 					<span>Inicio</span>
 				</a>
@@ -159,57 +150,31 @@
 				<a class="nav-link collapsed" data-bs-target="#components-nav" href="/categorias">
 					<i class="bi bi-menu-button-wide"></i><span>Categoria</span>
 				</a>
-
-
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/articulos">
-					<i class="bi bi-journal-text"></i><span>Articulos</span>
+					<i class="bi bi-tools"></i><span>Articulos</span>
 				</a>
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/clientes">
 					<i class="bi bi-journal-text"></i><span>Clientes</span>
 				</a>
 
-			</li><!-- End Forms Nav -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/facturacion">
-					<i class="bi bi-journal-text"></i><span>Facturacion</span>
+					<i class="bi bi-receipt"></i><span>Facturas</span>
 				</a>
-
-			</li><!-- End Forms Nav -->
-
 
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#tables-nav" href="/devoluciones">
-					<i class="bi bi-layout-text-window-reverse"></i><span>Devoluciones</span>
+				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientos">
+					<i class="bi bi-bank"></i><span>Asientos Contables</span>
 				</a>
-
-			</li><!-- End Tables Nav -->		
-
-			
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientosContables">
-					<i class="bi bi-gem"></i><span>Asientos Contables</span>
-				</a>
-
-			</li><!-- End Icons Nav -->
-
-			<li class="nav-heading">Usuarios</li>
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="/usuarios">
-					<i class="bi bi-person"></i>
-					<span>Usuarios</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-
+			<li class="nav-heading">Administracion</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="/vendedores">
 					<i class="bi bi-question-circle"></i>
 					<span>Vendedores</span>
 				</a>
-			</li><!-- End F.A.Q Page Nav -->
+			</li>
 		</ul>
 
 	</aside><!-- End Sidebar-->
@@ -224,7 +189,7 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.html">Volver al Inicio</a></li>
 								<button style="margin-left: 60em; display: inline-block; position: absolute; top: 20px;"
-									type="button" class="btn btn-info" data-bs-toggle="modal"
+									type="button" class="btn btn-warning" data-bs-toggle="modal"
 									data-bs-target="#crearAutoresModal">
 									Agregar Factura
 								</button>
@@ -250,21 +215,21 @@
 						<tbody>
 							<tr th:each="factura:${facturaciones}">
 								<td th:text="${factura.fecha}">Fecha</td>
-								<td th:text="${factura.articulo.descripcion}">Descripcion</td>
-								<td th:text="${factura.cantidad}">Fecha</td>
-								<td th:text="${factura.vendedor.nombre}">Descripcion</td>
-								<td th:text="${factura.cliente.nombre}">Descripcion</td>
-								<td th:text="${factura.montoTotal}">Descripcion</td>
-								<td th:text="${factura.comentario}">Descripcion</td>
+								<td th:text="${factura.articulo.descripcion}">Articulo</td>
+								<td th:text="${factura.cantidad}">Cantidad</td>
+								<td th:text="${factura.vendedor.nombre}">Vendedor</td>
+								<td th:text="${factura.cliente.nombre}">Cliente</td>
+								<td th:text="${factura.montoTotal}">Monto</td>
+								<td th:text="${factura.comentario}">Comentario</td>
 
 								<td>
-									<button type="button" class="btn btn-info editButton" th:data-id="${factura.id}"
+									<button type="button" class="btn editButton" th:data-id="${factura.id}"
 										data-bs-toggle="modal" data-bs-target="#editFacturassModal">
 										<i class="bi bi-pencil-square"></i>
 									</button>
 									<form th:action="@{/categorias/delete/{id}(id=${factura.id})}" method="post"
 										style="display:inline;">
-										<button type="submit" class="btn btn-danger">
+										<button type="submit" class="btn">
 											<i class="bi bi-trash"></i>
 										</button>
 									</form>
@@ -365,6 +330,7 @@
 	<script src="assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
+	<script src="assets/js/main.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('.datatable').DataTable({

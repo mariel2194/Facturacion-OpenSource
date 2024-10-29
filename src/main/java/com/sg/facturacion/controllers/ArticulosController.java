@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sg.facturacion.models.Articulos;
@@ -82,9 +83,21 @@ public class ArticulosController {
     }
 
     @PostMapping("/articulos/delete/{id}")
-    public String deleteArticulo(@PathVariable("id") Integer id) {
-        articulosService.deleteArticulo(id);
+    public String deleteArticulo(@PathVariable("id") Integer id, @RequestParam("cantidad") Integer cantidad, Model model) {
+        Articulos articulo = articulosService.getArticuloById(id);
+
+        if (articulo != null) {
+            if (articulo.getCantidad() > cantidad) {
+                articulo.setCantidad(articulo.getCantidad() - cantidad);
+                articulosService.updateArticulo(articulo);
+            } else {
+                model.addAttribute("error", "No se puede disminuir más de la cantidad disponible.");
+                return "redirect:/articulos";
+            }
+        }
         return "redirect:/articulos";
     }
+
+
 }
 

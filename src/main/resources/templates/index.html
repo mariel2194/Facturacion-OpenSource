@@ -15,8 +15,7 @@
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.gstatic.com" rel="preconnect">
-	<link
-		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
 		rel="stylesheet">
 
 	<!-- Vendor CSS Files -->
@@ -32,14 +31,6 @@
 	<link href="assets/css/style.css" rel="stylesheet">
 
 
-
-	<!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -49,7 +40,7 @@
 
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="/index" class="logo d-flex align-items-center">
-				<img src="assets/img/logo.png" alt="">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
 				<span class="d-none d-lg-block">Cuesta Centro Ferreteria</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
@@ -259,7 +250,7 @@
 						</li>
 
 						<li>
-							<a class="dropdown-item d-flex align-items-center" href="/logout">
+							<a class="dropdown-item d-flex align-items-center" href="/login">
 								<i class="bi bi-box-arrow-right"></i>
 								<span>Sign Out</span>
 							</a>
@@ -274,75 +265,46 @@
 	</header><!-- End Header -->
 
 	<!-- ======= Sidebar ======= -->
-	<aside id="sidebar" class="sidebar">
+		<aside id="sidebar" class="sidebar">
+			<ul class="sidebar-nav" id="sidebar-nav">
+				<li class="nav-item">
+					<a class="nav-link " href="index">
+						<i class="bi bi-grid"></i>
+						<span>Inicio</span>
+					</a>
 
-		<ul class="sidebar-nav" id="sidebar-nav">
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-bs-target="#components-nav" href="/categorias">
+						<i class="bi bi-menu-button-wide"></i><span>Categoria</span>
+					</a>
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/articulos">
+						<i class="bi bi-tools"></i><span>Articulos</span>
+					</a>
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/clientes">
+						<i class="bi bi-journal-text"></i><span>Clientes</span>
+					</a>
 
-			<li class="nav-item">
-				<a class="nav-link " href="/index">
-					<i class="bi bi-grid"></i>
-					<span>Inicio</span>
-				</a>
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/facturacion">
+						<i class="bi bi-receipt"></i><span>Facturas</span>
+					</a>
 
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#components-nav" href="/categorias">
-					<i class="bi bi-menu-button-wide"></i><span>Categoria</span>
-				</a>
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientos">
+						<i class="bi bi-bank"></i><span>Asientos Contables</span>
+					</a>
+				<li class="nav-heading">Administracion</li>
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="/vendedores">
+						<i class="bi bi-question-circle"></i>
+						<span>Vendedores</span>
+					</a>
+				</li>
+			</ul>
 
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/articulos">
-					<i class="bi bi-journal-text"></i><span>Articulos</span>
-				</a>
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/clientes">
-					<i class="bi bi-journal-text"></i><span>Clientes</span>
-				</a>
-
-			</li><!-- End Forms Nav -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/facturacion">
-					<i class="bi bi-journal-text"></i><span>Facturacion</span>
-				</a>
-
-			</li><!-- End Forms Nav -->
-
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#tables-nav" href="/devoluciones">
-					<i class="bi bi-layout-text-window-reverse"></i><span>Devoluciones</span>
-				</a>
-
-			</li><!-- End Tables Nav -->		
-
-			
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientosContables">
-					<i class="bi bi-gem"></i><span>Asientos Contables</span>
-				</a>
-
-			</li><!-- End Icons Nav -->
-
-			<li class="nav-heading">Usuarios</li>
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="/usuarios">
-					<i class="bi bi-person"></i>
-					<span>Usuarios</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="/vendedores">
-					<i class="bi bi-question-circle"></i>
-					<span>Vendedores</span>
-				</a>
-			</li><!-- End F.A.Q Page Nav -->
-		</ul>
-
-	</aside><!-- End Sidebar-->
-
+		</aside><!-- End Sidebar-->
 	<main id="main" class="main">
 		<div class="pagetitle">
 			<h1>Dashboard</h1>

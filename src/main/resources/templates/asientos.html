@@ -58,9 +58,9 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="/index" class="logo d-flex align-items-center">
-				<img src="assets/img/logo.png" alt="">
-				<span class="d-none d-lg-block">Biblioteca Mil Libros</span>
+			<a href="index" class="logo d-flex align-items-center">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
+				<span class="d-none d-lg-block">Cuesta Ferrecentro</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
 		</div><!-- End Logo -->
@@ -80,12 +80,8 @@
 						<i class="bi bi-search"></i>
 					</a>
 				</li><!-- End Search Icon-->
-
 				<li class="nav-item dropdown">
-
-
 				</li><!-- End Messages Nav -->
-
 				<li class="nav-item dropdown pe-3">
 
 					<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -149,90 +145,45 @@
 
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
-
 		<ul class="sidebar-nav" id="sidebar-nav">
-
 			<li class="nav-item">
-				<a class="nav-link " href="/index">
+				<a class="nav-link " href="index">
 					<i class="bi bi-grid"></i>
 					<span>Inicio</span>
 				</a>
 
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#components-nav" href="/autores">
-					<i class="bi bi-menu-button-wide"></i><span>Autores</span>
-				</a>
-
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/libros">
-					<i class="bi bi-journal-text"></i><span>Libros</span>
+				<a class="nav-link collapsed" data-bs-target="#components-nav" href="/categorias">
+					<i class="bi bi-menu-button-wide"></i><span>Categoria</span>
 				</a>
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/prestamos">
-					<i class="bi bi-journal-text"></i><span>Préstamos</span>
+				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/articulos">
+					<i class="bi bi-tools"></i><span>Articulos</span>
+				</a>
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/clientes">
+					<i class="bi bi-journal-text"></i><span>Clientes</span>
 				</a>
 
-			</li><!-- End Forms Nav -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/devoluciones">
-					<i class="bi bi-journal-text"></i><span>Devoluciones</span>
+				<a class="nav-link collapsed" data-bs-target="#forms-nav" href="/facturacion">
+					<i class="bi bi-receipt"></i><span>Facturas</span>
 				</a>
 
-			</li><!-- End Forms Nav -->
-
-
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#tables-nav" href="/editoras">
-					<i class="bi bi-layout-text-window-reverse"></i><span>Editoras</span>
+				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientosContables">
+					<i class="bi bi-bank"></i><span>Asientos Contables</span>
 				</a>
-
-			</li><!-- End Tables Nav -->
-
+			<li class="nav-heading">Administracion</li>
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#charts-nav" href="/idiomas">
-					<i class="bi bi-bar-chart"></i><span>Idiomas</span>
-				</a>
-
-			</li><!-- End Charts Nav -->
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/ciencias">
-					<i class="bi bi-gem"></i><span>Ciencias</span>
-				</a>
-
-			</li><!-- End Icons Nav -->
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/tipoBibliografia">
-					<i class="bi bi-gem"></i><span>Tipo Bibliografia</span>
-				</a>
-
-			</li><!-- End Icons Nav -->
-
-			<li class="nav-heading">Usuarios</li>
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="/usuarios">
-					<i class="bi bi-person"></i>
-					<span>Usuarios</span>
-				</a>
-			</li><!-- End Profile Page Nav -->
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="/empleados">
+				<a class="nav-link collapsed" href="/vendedores">
 					<i class="bi bi-question-circle"></i>
-					<span>Empleados</span>
+					<span>Vendedores</span>
 				</a>
-			</li><!-- End F.A.Q Page Nav -->
-
-
-
-
+			</li>
 		</ul>
 
 	</aside><!-- End Sidebar-->
-
 	<main id="main" class="main">
 
 
@@ -244,9 +195,7 @@
 
 					<nav>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html">Volver al Inicio</a></li>
-
-
+							<li class="breadcrumb-item"><a href="index">Volver al Inicio</a></li>
 						</ol>
 
 					</nav>
@@ -260,9 +209,6 @@
 							<th>Descripcion</th>
 							<th>Tipo de Movimiento</th>
 							<th>Cliente</th>						
-							<th>Acciones</th>
-
-
 						</tr>
 					</thead>
 					<tbody>
@@ -304,10 +250,6 @@
 							<input type="date" class="form-control" id="fechaDevolucionActual"
 								name="fechaDevolucionActual" required>
 						</div>
-
-
-
-
 
 						<button type="submit" id="saveDevolucionButton" class="btn btn-primary">Guardar</button>
 					</form>
