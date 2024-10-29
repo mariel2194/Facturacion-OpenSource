@@ -306,29 +306,17 @@
 		<script src="assets/js/main.js"></script>
 	<script>
 		
-		document.addEventListener('DOMContentLoaded', function () {
-			var editArticulosModal = document.getElementById('editArticulosModal');
-			if (editArticulosModal) {
-				editArticulosModal.addEventListener('show.bs.modal', function (event) {
-					var button = event.relatedTarget; // Button that triggered the modal
-					var articuloId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
-
-					document.getElementById('articuloId').value = articuloId;
-				});
-			}
-		});
-
+		
 		document.addEventListener('DOMContentLoaded', function () {
 			document.querySelectorAll('.editButton').forEach(button => {
 				button.addEventListener('click', function () {
-					const cienciaId = this.getAttribute('data-id');
+					const categoriaId = this.getAttribute('data-id');
 					const row = this.closest('tr');
 					const descripcion = row.children[0].innerText;
-					const activo = row.children[2].innerText === 'Sí';
-
-					// Rellenar el formulario del modal
-					document.getElementById('cienciaId').value = cienciaId;
+					const activo = row.children[1].innerText === 'Sí';
+					document.getElementById('categoriaId').value = categoriaId;
 					document.getElementById('descripcion').value = descripcion;
+					document.getElementById('activo').checked = activo;
 
 				});
 			});

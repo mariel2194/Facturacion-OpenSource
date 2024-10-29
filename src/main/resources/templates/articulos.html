@@ -401,21 +401,6 @@
 		});
 
 		document.addEventListener('DOMContentLoaded', function () {
-			var editAutoresModal = document.getElementById('editAutoresModal');
-			if (editAutoresModal) {
-				editAutoresModal.addEventListener('show.bs.modal', function (event) {
-					var button = event.relatedTarget; // Button that triggered the modal
-					var autorId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
-
-					// Set the autorId in the hidden input field
-					document.getElementById('autorId').value = autorId;
-
-					// Optional: Fetch additional details if needed
-				});
-			}
-		});
-
-		document.addEventListener('DOMContentLoaded', function () {
 			document.querySelectorAll('.editButton').forEach(button => {
 				button.addEventListener('click', function () {
 					const articuloId = this.getAttribute('data-id');

@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-	<title>Gestion de Usuarios</title>
+	<title>Gestion de Clientes</title>
 	<meta content="" name="description">
 	<meta content="" name="keywords">
 
@@ -365,58 +365,31 @@
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
 	<script>
-		let articuloId;
-
-		function abrirModalEliminar(id) {
-			articuloId = id;
-			const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-			deleteModal.show();
-		}
-
-		document.getElementById("confirmarEliminar").addEventListener("click", function () {
-			const cantidad = document.getElementById("cantidadEliminar").value;
-			if (cantidad > 0) {
-				const form = document.createElement("form");
-				form.method = "POST";
-				form.action = `/articulos/delete/${articuloId}`;
-
-				const inputCantidad = document.createElement("input");
-				inputCantidad.type = "hidden";
-				inputCantidad.name = "cantidad";
-				inputCantidad.value = cantidad;
-				form.appendChild(inputCantidad);
-				document.body.appendChild(form);
-				form.submit();
-			} else {
-				alert("Por favor, ingrese una cantidad válida.");
-			}
-		});
-
 		document.addEventListener('DOMContentLoaded', function () {
-			var editArticulosModal = document.getElementById('editArticulosModal');
-			if (editArticulosModal) {
-				editArticulosModal.addEventListener('show.bs.modal', function (event) {
-					var button = event.relatedTarget; // Button that triggered the modal
-					var articuloId = button.getAttribute('data-id'); // Extract the ID from data-id attribute
-
-					document.getElementById('articuloId').value = articuloId;
-				});
-			}
-		});
-
-		document.addEventListener('DOMContentLoaded', function () {
-			document.querySelectorAll('.editButton').forEach(button => {
-				button.addEventListener('click', function () {
-					const cienciaId = this.getAttribute('data-id');
-					const row = this.closest('tr');
-					const descripcion = row.children[0].innerText;
-					const activo = row.children[2].innerText === 'Sí';
-
-					// Rellenar el formulario del modal
-					document.getElementById('cienciaId').value = cienciaId;
-					document.getElementById('descripcion').value = descripcion;
-
-				});
+					document.querySelectorAll('.editButton').forEach(button => {
+						button.addEventListener('click', function () {
+							const articuloId = this.getAttribute('data-id');
+							const row = this.closest('tr');
+							const descripcion = row.children[0].innerText;
+							const precioUnitario = row.children[1].innerText;
+							const cantidad = row.children[2].innerText;
+							const categoria = row.children[3].getAttribute('data-id');
+							const activo = row.children[4].innerText === 'Sí'; // Convertir el texto en booleano
+							document.getElementById('articuloId').value = articuloId;
+							document.getElementById('descripcion').value = descripcion;
+							document.getElementById('precio_unitario').value = precioUnitario;
+							document.getElementById('cantidad').value = cantidad;
+							document.getElementById('activo').checked = activo;
+							document.getElementById('categoria')
+							const categoriaSelect = document.getElementById('categoria');
+							const optionToSelect = Array.from(categoriaSelect.options).find(
+							                option => option.value === categoria
+							            );
+							            if (optionToSelect) {
+							                optionToSelect.selected = true;
+							            }	
+							
+						});
 			});
 		});
 	</script>
