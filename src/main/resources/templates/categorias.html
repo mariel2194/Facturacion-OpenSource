@@ -58,7 +58,8 @@
 
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="index" class="logo d-flex align-items-center">
-				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png"
+					alt="Ícono" style="width: 24px; height: 24px;">
 				<span class="d-none d-lg-block">Cuesta Ferrecentro</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
@@ -100,7 +101,7 @@
 						<li>
 							<a class="dropdown-item d-flex align-items-center" href="users-profile.html">
 								<i class="bi bi-person"></i>
-								<span>My Profile</span>
+								<span>Mi Perfil</span>
 							</a>
 						</li>
 						<li>
@@ -110,7 +111,7 @@
 						<li>
 							<a class="dropdown-item d-flex align-items-center" href="users-profile.html">
 								<i class="bi bi-gear"></i>
-								<span>Account Settings</span>
+								<span>Configuracion</span>
 							</a>
 						</li>
 						<li>
@@ -120,7 +121,7 @@
 						<li>
 							<a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
 								<i class="bi bi-question-circle"></i>
-								<span>Need Help?</span>
+								<span>Ayuda</span>
 							</a>
 						</li>
 						<li>
@@ -170,7 +171,7 @@
 				</a>
 
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientosContables">
+				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientos">
 					<i class="bi bi-bank"></i><span>Asientos Contables</span>
 				</a>
 			<li class="nav-heading">Administracion</li>
@@ -193,9 +194,9 @@
 					<nav>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html">Volver al Inicio</a></li>
-							<button style="margin-left: 70em; display: inline-block; position: absolute; top: 20px;"
-								type="button" class="btn btn-info" data-bs-toggle="modal"
-								data-bs-target="#crearAutoresModal">
+							<button style="margin-left: 60em; display: inline-block; position: absolute; top: 20px;"
+								type="button" class="btn btn-warning" data-bs-toggle="modal"
+								data-bs-target="#crearCategoriasModal">
 								Agregar Categoría
 							</button>
 
@@ -216,13 +217,13 @@
 							<td th:text="${categoria.descripcion}">Descripcion</td>
 							<td th:text="${categoria.activo ? 'Sí' : 'No'}">Activo</td>
 							<td>
-								<button type="button" class="btn btn-info editButton" th:data-id="${categoria.id}"
-									data-bs-toggle="modal" data-bs-target="#editAutoresModal">
+								<button type="button" class="btn editButton" th:data-id="${categoria.id}"
+									data-bs-toggle="modal" data-bs-target="#editarCategoriasModal">
 									<i class="bi bi-pencil-square"></i>
 								</button>
 								<form th:action="@{/categorias/delete/{id}(id=${categoria.id})}" method="post"
 									style="display:inline;">
-									<button type="submit" class="btn btn-danger">
+									<button type="submit" class="btn">
 										<i class="bi bi-trash"></i>
 									</button>
 								</form>
@@ -234,40 +235,25 @@
 		</div>
 
 	</main><!-- End #main -->
-	<!-- Modal para Editar Articulos -->
-	<div class="modal fade" id="EditarArticuloModal" tabindex="-1" aria-labelledby="editArticulosLabel"
+	
+	<!-- Modal para Editar Categorias -->
+	<div class="modal fade" id="editarCategoriasModal" tabindex="-1" aria-labelledby="editarCategoriasLabel"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="editArticulosLabel">Editar Articulo</h5>
+					<h5 class="modal-title" id="editarCategoriasLabel">Editar Categoria</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form id="cienciasForm" th:action="@{/articulos/update}" method="post" th:object="${articulos}">
-						<input type="hidden" id="articuloId" name="id">
+					<form id="cienciasForm" th:action="@{/categorias/update}" method="post" th:object="${categorias}">
+						<input type="hidden" id="categoriaId" name="id">
 						<div class="form-group">
 							<label for="nombre">Descripcion:</label>
 							<input type="text" class="form-control" id="descripcion" name="descripcion"
-								th:value="${articulo?.descripcion}">
+								th:value="${categoria?.descripcion}">
 						</div>
-						<div class="form-group">
-							<label for="nombre">Precio Unitario:</label>
-							<input type="text" class="form-control" id="descripcion" name="precio_unitario"
-								th:value="${articulo?.precio_unitario}">
-						</div>
-						<div class="form-group">
-							<label for="nombre">Cantidad:</label>
-							<input type="text" class="form-control" id="cantidad" name="cantidad"
-								th:value="${articulo?.cantidad}">
-						</div>
-						<div class="form-group">
-							<label for="idioma">Categoria:</label>
-							<select class="form-control" id="categoria" name="categoria.id">
-								<option th:each="categoria : ${categorias}" th:value="${categoria.id}"
-									th:text="${categoria.descripcion}"></option>
-							</select>
-						</div>
+						
 						<div class="form-group">
 							<label for="activo">Activo</label>
 							<input type="checkbox" class="form-check-input" id="activo" name="activo">
@@ -283,40 +269,22 @@
 		</div>
 	</div>
 
-	<!-- Modal para Crear Articulos -->
-	<div class="modal fade" id="crearArticuloModal" tabindex="-1" aria-labelledby="crearArticulosLabel"
+	<!-- Modal para Crear Categorias -->
+	<div class="modal fade" id="crearCategoriasModal" tabindex="-1" aria-labelledby="crearCategoriasLabel"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="crearArticulosLabel">Crear Articulo</h5>
+					<h5 class="modal-title" id="crearCategoriasLabel">Crear Categoria</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form th:action="@{/articulos/addnew}" method="post" th:object="${articulo}">
+					<form th:action="@{/categorias/addnew}" method="post" th:object="${categoria}">
 						<div class="form-group">
 							<label for="nombre">Descripcion:</label>
 							<input type="text" class="form-control" id="descripcion" name="descripcion"
-								th:value="${articulo?.descripcion}">
-						</div>
-						<div class="form-group">
-							<label for="nombre">Precio Unitario:</label>
-							<input type="text" class="form-control" id="descripcion" name="precio_unitario"
-								th:value="${articulo?.precio_unitario}">
-						</div>
-						<div class="form-group">
-							<label for="nombre">Cantidad:</label>
-							<input type="text" class="form-control" id="cantidad" name="cantidad"
-								th:value="${articulo?.cantidad}">
-						</div>
-
-						<div class="form-group">
-							<label for="idioma">Categoria:</label>
-							<select class="form-control" id="categoria" name="categoria.id">
-								<option th:each="categoria : ${categorias}" th:value="${categoria.id}"
-									th:text="${categoria.descripcion}"></option>
-							</select>
-						</div>
+								th:value="${categoria?.descripcion}">
+						</div>						
 						<br>
 						<div class="form-group" style="margin-top: 0.5px;">
 							<label for="activo">Activo</label>
@@ -330,62 +298,14 @@
 		</div>
 	</div>
 
-	<!-- Modal para Disminuir Cantidad de Artículo -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="BorrarArticulosLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="BorrarArticulosLabel">Disminuir Cantidad de Artículo</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<p>Ingrese la cantidad que desea eliminar:</p>
-					<input type="number" id="cantidadEliminar" min="1" class="form-control">
-				</div>
-				<div class="modal-footer">
-					<button id="confirmarEliminar" class="btn btn-danger">Confirmar</button>
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	
 	<!-- ======= Footer ======= -->
-	<footer id="footer" class="footer">
+	<footer id="footer" class="footer"></footer>
 
-	</footer><!-- End Footer -->
-
-	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-			class="bi bi-arrow-up-short"></i></a>
-
+	<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
 	<script>
-		let articuloId;
-
-		function abrirModalEliminar(id) {
-			articuloId = id; 
-			const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-			deleteModal.show();
-		}
-
-		document.getElementById("confirmarEliminar").addEventListener("click", function () {
-			const cantidad = document.getElementById("cantidadEliminar").value;
-			if (cantidad > 0) {
-				const form = document.createElement("form");
-				form.method = "POST";
-				form.action = `/articulos/delete/${articuloId}`;
-
-				const inputCantidad = document.createElement("input");
-				inputCantidad.type = "hidden";
-				inputCantidad.name = "cantidad";
-				inputCantidad.value = cantidad;
-				form.appendChild(inputCantidad);
-				document.body.appendChild(form);
-				form.submit();
-			} else {
-				alert("Por favor, ingrese una cantidad válida.");
-			}
-		});
-
+		
 		document.addEventListener('DOMContentLoaded', function () {
 			var editArticulosModal = document.getElementById('editArticulosModal');
 			if (editArticulosModal) {

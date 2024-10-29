@@ -48,7 +48,8 @@
 
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="index" class="logo d-flex align-items-center">
-				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png" alt="Ícono" style="width: 24px; height: 24px;">
+				<img src="https://e7.pngegg.com/pngimages/239/499/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper-thumbnail.png"
+					alt="Ícono" style="width: 24px; height: 24px;">
 				<span class="d-none d-lg-block">Cuesta Ferrecentro</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
@@ -160,7 +161,7 @@
 				</a>
 
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientosContables">
+				<a class="nav-link collapsed" data-bs-target="#icons-nav" href="/asientos">
 					<i class="bi bi-bank"></i><span>Asientos Contables</span>
 				</a>
 			<li class="nav-heading">Administracion</li>
@@ -209,18 +210,18 @@
 					<tbody>
 						<tr th:each="cliente:${clientes}">
 							<td th:text="${cliente.nombre}">Nombre</td>
-							<td th:text="${cliente.rnc != null ? cliente.rnc : 'N/A' }">RNC</td>							
+							<td th:text="${cliente.rnc != null ? cliente.rnc : 'N/A' }">RNC</td>
 							<td th:text="${cliente.cedula}">Cedula</td>
 							<td th:text="${cliente.tipoPersona}">Tipo Persona</td>
 							<td th:text="${cliente.activo ? 'Sí' : 'No'}">Activo</td>
 							<td>
 
 								<form method="post">
-									<button type="button" class="btn btn-info editButton" data-bs-toggle="modal"
+									<button type="button" class="btn editButton" data-bs-toggle="modal"
 										data-bs-target="#editClientesModal">
 										<i class="bi bi-pencil-square"></i>
 									</button>
-									<button type="submit" class="btn btn-danger">
+									<button type="submit" class="btn">
 										<i class="bi bi-trash"></i>
 									</button>
 								</form>
@@ -361,11 +362,13 @@
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
 			class="bi bi-arrow-up-short"></i></a>
 
+	<!-- Template Main JS File -->
+	<script src="assets/js/main.js"></script>
 	<script>
 		let articuloId;
 
 		function abrirModalEliminar(id) {
-			articuloId = id; 
+			articuloId = id;
 			const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 			deleteModal.show();
 		}
